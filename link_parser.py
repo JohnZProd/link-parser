@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup
 import argparse
 import time
 import logging
+import sys
 
 def build_db_topic_connection():
     
@@ -44,7 +45,7 @@ def main():
 
     if not args.batch_size:
         logging.error("Requires --batch argument and parameter to determine batch size\nExiting...")
-        exit(0)
+        sys.exit(0)
     else:
         logging.info("Using a batch size of " + args.batch_size)
         batch_size = int(args.batch_size)
@@ -54,7 +55,7 @@ def main():
         collection = build_db_topic_connection()
     except:
         logging.error("Can't contact database\nExiting")
-        exit(0)
+        sys.exit(0)
     
     logging.info("Querying db for links without word count")
     query = {"p-words": None}
@@ -93,6 +94,7 @@ def main():
         collection.update_one(query, value)
 
     logging.info("All processes complete")
+    sys.exit(0)
 
 if __name__ == "__main__":
     main()

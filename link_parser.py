@@ -61,6 +61,8 @@ def main():
     query = {"p-words": None}
     links = list(collection.find(query).limit(batch_size))
 
+    logging.info("Actual batch size: " + str(len(links)))
+
     id_wordcount_map = []
 
     if len(links) > 0:

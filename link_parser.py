@@ -84,7 +84,7 @@ def main():
 
             except:
                 logging.warning("Failed to calculate words for link object: " + str(link))
-                #Retry logic?
+                #Retry logic is technically already implemented by requests
     else:
         logging.info("No links to update\nExiting")
         exit(0)
